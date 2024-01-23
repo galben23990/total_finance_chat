@@ -1,6 +1,5 @@
 
 from config import *
-from utiltes import *
 import openai
 import os
 import time
@@ -245,6 +244,24 @@ st.title("AcountBot🤖")
 
 openai.api_key = x+y+z
 
+openaiclient = openai.OpenAI(api_key=openai.api_key )
+
+def ask_gpt(massage_history,model="gpt-4-1106-preview",max_tokens=2000,temperature=0,return_str=True,response_format={"type": "json_object"}):
+
+    response =  openaiclient.chat.completions.create(
+      model=model,
+      messages=massage_history,
+      response_format=response_format,
+      temperature=temperature,
+      max_tokens=max_tokens,
+      top_p=1,
+      frequency_penalty=0,
+      presence_penalty=0,
+    )
+    if return_str:
+        return response.choices[0].message.content
+    else:
+        return response
     
 
 
