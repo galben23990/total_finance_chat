@@ -28,13 +28,7 @@ if "chosen_keys_for_expanders" not in st.session_state:
 
 
 def ask_gpt(massage_history,model="gpt-4-1106-preview",max_tokens=2000,temperature=0,return_str=True,response_format={"type": "json_object"}):
-    x="sk-9xPQ9C50b"
-    y="c1sYkg2yikQT3Bl"
-    z="bkFJ6jlVHQrpiJT3KZ9BmOMP"
-    openai.api_key = x+y+z
-    openaiclient = openai.OpenAI(api_key=openai.api_key )
-
-
+  
     response =  openaiclient.chat.completions.create(
       model=model,
       messages=massage_history,
@@ -53,11 +47,6 @@ def ask_gpt(massage_history,model="gpt-4-1106-preview",max_tokens=2000,temperatu
 
 
 def chat_process(prompt,massage_history="",write_contetn=False):
-    x="sk-9xPQ9C50b"
-    y="c1sYkg2yikQT3Bl"
-    z="bkFJ6jlVHQrpiJT3KZ9BmOMP"
-    openai.api_key = x+y+z
-    openaiclient = openai.OpenAI(api_key=openai.api_key )
 
     st.session_state.messages_QNA_bot.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
@@ -272,6 +261,11 @@ def recrate_expander(keys):
 
 st.title("AcountBot🤖")
     
+x="sk-9xPQ9C50b"
+y="c1sYkg2yikQT3Bl"
+z="bkFJ6jlVHQrpiJT3KZ9BmOMP"
+openai.api_key = x+y+z
+openaiclient = openai.OpenAI(api_key=openai.api_key )
 
 
 # Render the expanders first if the keys are set
