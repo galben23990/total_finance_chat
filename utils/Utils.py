@@ -17,7 +17,7 @@ profile_file = rf"C:\browsers_dir\shilo.json"
 
 
 openai.api_key = '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'
-openaiclient = openai.OpenAI(api_key=openai.api_key )
+#openaiclient = openai.OpenAI(api_key=openai.api_key )
 
 def extract_id_from_tweet_element(tweet):
     return re.search(r'status\/(.*?)"', tweet.inner_html()).group(1).split('/')[0]
