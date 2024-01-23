@@ -192,7 +192,7 @@ def create_expnaders(prompt):
             for file in files:
                 with st.container(border=True):
                     #replace none with 0 and first name add Month 1....Month 18
-                    file_content=json.load(open(file))
+                    file_content=open(file)
                     st.write(os.path.basename(file))
                     
                     st.json(file_content)
@@ -236,7 +236,7 @@ def recrate_expander(keys):
             for file in files:
                 with st.container(border=True):
                     #replace none with 0 and first name add Month 1....Month 18
-                    file_content=json.load(open(file))
+                    file_content=open(file)
                     st.write(os.path.basename(file))
                     
                     st.json(file_content)
