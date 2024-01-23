@@ -1,28 +1,15 @@
 
-import streamlit as st
-import os
 from config import *
 from utiltes import *
-from utils import *
-import os
-from config import *
 import openai
-import streamlit
-import streamlit as st
-from utils import *
 import os
-from config import *
 import time
 import pandas as pd
 import json
 import re
-from utiltes import *
 import time
 import datetime as dt
 from datetime import datetime, timedelta
-from serpapi import GoogleSearch
-from collections import defaultdict
-from PIL import Image
 
 
 
