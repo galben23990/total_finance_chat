@@ -161,7 +161,7 @@ if "messages_QNA_bot" not in st.session_state:
     st.session_state["messages_QNA_bot"]=q_and_a_massage_history
 
 def create_expnaders(prompt):
-    system_get_keys="You will get user question , and a data dict where the key is the excplict name of the datapoint and the value is the explination of the datapoint, you need to output in json format they keys that you think they data inside on the datapoint is relvent for answering the question , the json should have a key name 'answer' amd the value is a python list with explicit names of the keys of the datpoints you think are relvent for the answer Note you can use more than 1 datapoint for the answer"
+    system_get_keys="""You will get user question , and a data dict where the key is the excplict name of the datapoint and the value is the explination of the datapoint, you need to output in json format they keys that you think they data inside on the datapoint is relvent for answering the question , the json should have a key name 'answer' amd the value is a python list with explicit names of the keys of the datpoints you think are relvent for the answer Note you can use more than 1 datapoint for the answer your answer can be from the followıng keys only ["Balance Sheets","Cash Flow","PNL","Goverment Payments"]"""
 
     get_keys_massage_history=[{"role":"system","content":system_get_keys},
                             {"role":"user","content":f"***THIS IS THE USER QUESTION**: {prompt}"},
