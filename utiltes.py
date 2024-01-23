@@ -3,7 +3,6 @@ import openai
 import os
 import pandas as pd
 import json
-import tabulate
 import streamlit as st
 from selenium import webdriver
 from selenium.webdriver.firefox import firefox_profile
