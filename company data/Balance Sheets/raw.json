@@ -1,0 +1,102 @@
+{
+  "USD": {
+    "asset_pie_current": {
+      "M_M": -2.43,
+      "Y_Y": -4.73,
+      "current": 0.839800669879912
+    },
+    "asset_pie_noncurrent": {
+      "M_M": 2.86,
+      "Y_Y": 5.45,
+      "current": 0.160199330120088
+    },
+    "asset_total": 12241000,
+    "current_assets_total": 10280000,
+    "current_liabiltes_total": 7835000,
+    "current_ratio": {
+      "M_M": -8.94059366253505,
+      "Y_Y": -10.0581678703519,
+      "current": 1.31206126356094
+    },
+    "debt_to_equity_ratio": {
+      "M_M": 51.7231597994775,
+      "Y_Y": 58.1885547744122,
+      "current": 2.56360989810771
+    },
+    "equity": {
+      "M_M": -23.3087742799732,
+      "Y_Y": -26.2223710649699,
+      "current": 3435000
+    },
+    "equity_ratio": {
+      "M_M": -52.5856387346489,
+      "Y_Y": -59.15884357648,
+      "current": 0.280614328894698
+    },
+    "global_growth_M_M_assets": -1.58,
+    "global_growth_M_M_liabilities": -14.06,
+    "global_growth_Y_Y_assets": 2.31,
+    "global_growth_Y_Y_liabilities": -19.31,
+    "liabiltes_pie_current": {
+      "M_M": -11.16,
+      "Y_Y": -15.21,
+      "current": 0.889734272087213
+    },
+    "liabiltes_pie_noncurrent": {
+      "M_M": -37.49,
+      "Y_Y": -42.12,
+      "current": 0.110265727912787
+    },
+    "liabiltes_total": 8806000,
+    "non_current_assets_total": 1961000,
+    "non_current_liabiltes_total": 971000,
+    "pie_data": {
+      "current_assets_pie": {
+        "M_M": -0.03354146090495619,
+        "Total": 22282220.292468052,
+        "Y_Y": 791.6392386261872,
+        "graph_data": {
+          "Other Current Assets": 0.0822815237888228,
+          "Prepaid Expenses": 72.11517610155607,
+          "Prepaid Insurance Expenses- Short Term": 0.2583427470172631,
+          "Trade Receivable": 25.33269270740256,
+          "Vat (Debit And Credit)": 2.2115069202352764
+        }
+      },
+      "current_liabilities_pie": {
+        "M_M": 0.8983938377364568,
+        "Total": -4854046.960017987,
+        "Y_Y": 999999999.99,
+        "graph_data": {
+          "Credit Cards": 6.13993145729467,
+          "Deferred Taxes": 1.7010952039781163e-07,
+          "Employees And Related Liabilities": 19.411352944482196,
+          "Institutions": 40.22119359539047,
+          "Short-Term Loans": 27.298275329753714,
+          "Suppliers": 13.125815948774866
+        }
+      },
+      "non_current_assets_pie": {
+        "M_M": 0.0008270729836245211,
+        "Total": 6843700.828125,
+        "Y_Y": 953.2784066361226,
+        "graph_data": {
+          "Electronic Equipment": 0.8406708803453434,
+          "Fixed Assets - Accumulated Depreciation": 96.54630098449589,
+          "Intangible Asset": 2.6130281351587703
+        }
+      },
+      "non_current_liabilities_pie": {
+        "M_M": 999999999.99,
+        "Total": 0.0,
+        "Y_Y": 999999999.99,
+        "graph_data": {}
+      }
+    },
+    "working_capital": {
+      "M_M": -20.3323558162268,
+      "Y_Y": -22.8739002932551,
+      "current": 2445000
+    }
+  }
+}

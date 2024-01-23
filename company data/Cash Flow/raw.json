@@ -1,0 +1,116 @@
+{
+  "USD": {
+    "capex": {
+      "current": 12321421
+    },
+    "current_ratio": {
+      "current": 1.31
+    },
+    "end_of_month_cashflow": {
+      "current": 3507000
+    },
+    "finance_chart": {
+      "Equity-Based FX Cost": {
+        "current": 78000
+      },
+      "Equity-Based Payments": {
+        "current": 12000
+      },
+      "Premium": {
+        "current": -22000
+      }
+    },
+    "finance_expense": {
+      "M_M": 22.66,
+      "Y_Y": 26.12,
+      "current": 68000
+    },
+    "investing_chart": {
+      "Fixed Assets": {
+        "M_M": 36.6197183098592,
+        "Y_Y": 18.740521247268553,
+        "current": 26000
+      },
+      "Intangible Asset": {
+        "M_M": 0.426439232409382,
+        "Y_Y": 18.740521247268553,
+        "current": 2000
+      },
+      "Investment for Short-Term": {
+        "M_M": 7.38533298782068,
+        "Y_Y": 18.740521247268553,
+        "current": 285000
+      }
+    },
+    "investing_expense": {
+      "M_M": -4.31,
+      "Y_Y": -12.56,
+      "current": 313000
+    },
+    "net_burn": {
+      "M_M": -3.301621668305365,
+      "Y_Y": -652.6339098758741,
+      "current": -512318.488902718
+    },
+    "open_balance_cashflow": {
+      "M_M": 0.0,
+      "Y_Y": 0.0,
+      "current": 4019000
+    },
+    "operating_chart": {
+      "Accounts Payable": {
+        "M_M": -1.4654200102656054,
+        "current": 121000
+      },
+      "Accounts Receivablexa0": {
+        "M_M": 71.689497716895,
+        "current": 157000
+      },
+      "Customers": {
+        "M_M": 11.0691823899371,
+        "current": 176000
+      },
+      "Deferred Revenues": {
+        "M_M": 45.0062421972534,
+        "current": -2163000
+      },
+      "Equity-Based Payments": {
+        "M_M": 46.8807339449541,
+        "current": -511000
+      },
+      "Fixed Assets": {
+        "M_M": -32.8358208955224,
+        "current": -22000
+      },
+      "Income Tax Receivable, Net": {
+        "M_M": -100,
+        "current": -261000
+      },
+      "Intangible Asset": {
+        "M_M": 19.3436960276339,
+        "current": -112000
+      },
+      "Investment for Short-Term": {
+        "M_M": 0.732807215332582,
+        "current": 26000
+      },
+      "Restricted Cash": {
+        "M_M": -4.33705080545229,
+        "current": -35000
+      },
+      "Suppliers and Service Providers": {
+        "M_M": 4.39146800501882,
+        "current": -35000
+      },
+      "Tax Provision": {
+        "M_M": -19.5488721804511,
+        "current": 26000
+      }
+    },
+    "operating_expense": {
+      "M_M": 5.31,
+      "Y_Y": 12.1,
+      "current": -2633001
+    }
+  }
+}

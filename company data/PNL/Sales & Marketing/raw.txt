@@ -1,0 +1,63 @@
+Certainly, here is the "Sales and Marketing Expenses" category presented in table format:
+
+| Sub-category (תת סעיף) | Description (שם חשבון) | Amount ($) |
+|------------------------|-----------------------|------------|
+| Travel                 | Flight Alona Z Germany 19-22.9.23 (הוצ טיסה ALONA Z GERMANY 19-22.9.23) | 202        |
+| Travel                 | Flight Matt T. Toronto 25-30.6.23 (הוצ טיסה MATT T. TORONTO 25-30.6.23) | 4,178      |
+| Travel                 | Flight Adam A. - Warsaw 9-13.1.23 (הוצ טיסה אדם א. - וורשה 9-13.1.23) | 1,360      |
+| Travel                 | Flight Uri S. Brazil 30.4-4.5.23 (הוצ טיסה אורי ש. BRAZIL 30.4-4.5.23) | 6,208      |
+| Travel                 | Flight Uri S. London 5-9.6.23 (הוצ טיסה אורי ש. LONDON 5-9.6.23) | 2,224      |
+| Travel                 | Flight Uri S. Warsaw 9-13.7.23 (הוצ טיסה אורי ש. WARSAW 9-13.7.23) | 1,152      |
+| Travel                 | Flight Oshri Germany 19-22.9.23 (הוצ טיסה אושרי GERMANY 19-22.9.23) | 1,079      |
+| Travel                 | Flight Oshri B. Toronto 24-30.6.23 (הוצ טיסה אושרי ב. TORONTO 24-30.6.23) | 7,144      |
+| Travel                 | Flight Alon S. Warsaw 10-13.7.23 (הוצ טיסה אלון ס. WARSAW 10-13.7.23) | 1,060      |
+| Travel                 | Flight Brigit Sander Brazil 29.4-4.5.23 (הוצ טיסה בריגיט סנדר BRAZIL 29.4-4.5.23) | 3,495      |
+| Travel                 | Flight Germy Germany 19-21.9.23 (הוצ טיסה גרמי GERMANY 19-21.9.23) | 310        |
+| Travel                 | Flight Germy B. USA 26-29.3.23 (הוצ טיסה גרמי ב. 26-29.3.23 USA) | 3,374      |
+| Travel                 | Flight Germy B. England 18-20.7.23 (הוצ טיסה גרמי ב. ENGLAND 18-20.7.23) | 1,594      |
+| Travel                 | Flight Germy B. Toronto 25-30.6.23 (הוצ טיסה גרמי ב. TORONTO 25-30.6.23) | 2,806      |
+| Travel                 | Flight Germy B. USA 1-5.7.23 (הוצ טיסה גרמי ב. USA 1-5.7.23) | 965        |
+| Travel                 | Flight Germy Bandler US 29.1-2.2.23 (הוצ טיסה גרמי בנדלר 29.1-2.2.23 US) | 5,434      |
+| Travel                 | Flight David Katz Canada 26-29.6.23 (הוצ טיסה דוד כץ 26-29.6.23 CANADA) | 4,850      |
+| Travel                 | Flight Javier - Warsaw 9-13.1.23 (הוצ טיסה חבייר - וורשה 9-13.1.23) | 1,343      |
+| Travel                 | Flight Chen N. Toronto 25-30.6.23 (הוצ טיסה חן נ. TORONTO 25-30.6.23) | 260        |
+| Travel                 | Flight to Warsaw 9-13.1.23 (הוצ טיסה ליעד - וורשה 9-13.1.23) | 1,174      |
+| Travel                 | Flight Moriel Wolfman Toronto 25-29.6.23 (הוצ טיסה מוריאל וולפמן TORONTO 25-29.6.23) | 4,094      |
+| Travel                 | Flight Moran Weisel Toronto 10-13.7.23 (הוצ טיסה מורן ויזל TORONTO 10-13.7.23) | 566        |
+| Travel                 | Flight Martin Germany 19-22.9.23 (הוצ טיסה מרטין GERMANY 19-22.9.23) | 413        |
+| Travel                 | Flight Martin USA 25-30.3.23 (הוצ טיסה מרטין USA 25-30.3.23) | 4,706      |
+| Travel                 | Flight Marna Baker Toronto 25-29.6.23 (הוצ טיסה מרנה בקר 25-29.6.23 TORONTO) | 3,714      |
+| Travel                 | Flight Sahar A. - Warsaw 9-13.1.23 (הוצ טיסה סהר ע. - וורשה 9-13.1.23) | 1,435      |
+| Travel                 | Flight Sophia T. USA 12-15.6.23 (הוצ טיסה סופיה ט. 12-15.6.23 USA) | 2,545      |
+| Travel                 | Flight Sophia T. Germany 18-21.9.23 (הוצ טיסה סופיה ט. GERMANY 18-21.9.23) | 1,279      |
+| Travel                 | Flight Sophia T. Toronto 25-30
+
+.06.23 (הוצ טיסה סופיה ט. TORONTO 25-30.06.23) | 3,881      |
+| Travel                 | Flight Shahar Germany 19-22.9.23 (הוצ טיסה שחר GERMANY 19-22.9.23) | 639        |
+| Travel                 | Flight Shahar Warsaw 7-12.5.23 (הוצ טיסה שחר WARSAW 7-12.5.23) | 1,322      |
+| Travel                 | Flight Shahar A. London 5-9.6.23 (הוצ טיסה שחר א. LONDON 5-9.6.23) | 1,539      |
+| Travel                 | Flight Shahar A. Warsaw 13-17.2.23 (הוצ טיסה שחר א. WARSAW 13-17.2.23) | 566        |
+| Travel                 | Flight Shahar A. Warsaw 9-14.7.23 (הוצ טיסה שחר א. WARSAW 9-14.7.23) | 2,534      |
+| Travel Total           |                         | 79,445     |
+| Advertising and Marketing | Affiliate - Growth (Affiliate - GROWTH) | 1,964      |
+| Advertising and Marketing | Design (Design)       | 29,613     |
+| Advertising and Marketing | SDRs (SDRs)           | 42,770     |
+| Advertising and Marketing | Conferences (כנסים)  | 23,886     |
+| Advertising and Marketing | Advertising (פרסום) | 332,212    |
+| Advertising and Marketing | Website Promotion (קידום אתרים) | 22,932     |
+| Advertising and Marketing | Software - Sales (תוכנה - SALES) | 596        |
+| Advertising and Marketing Total |                    | 453,970    |
+| Subcontractors (קבלני משנה) | Subcontractors Marketing - Inactive (קבלני משנה שיווק - לא פעיל) | 86,448     |
+| Subcontractors         | Subcontractors Sales and Marketing - Salaries (קבלני משנה שיווק ומכירה - שכר) | 331,276    |
+| Subcontractors Total   |                         | 417,724    |
+| Salaries and Related   | Vacation Sales and Marketing (הוצ' חופשה מכירה ושיווק) | 52,160     |
+| Salaries and Related   | National Insurance - Sales and Marketing (הוצאות ביטוח לאומי - שיווק ומכירה) | 129,207    |
+| Salaries and Related   | Pension - Sales and Marketing (הוצאות גמל - שיווק ומכירה) | 94,716     |
+| Salaries and Related   | Pension Contributions - Sales and Marketing (הוצאות גמל א.כ.ע - שיווק ומכירה) | 3,470      |
+| Salaries and Related   | Compensation Pension - Sales and Marketing (הוצאות גמל פיצויים - שיווק ומכירה) | 124,472    |
+| Salaries and Related   | Continuing Education Fund - Sales and Marketing (הוצאות קרן השתלמות - שיווק ומכירה) | 66,056     |
+| Salaries and Related   | Salary Expenses - Sales and Marketing (הוצאות שכר - שיווק ומכירה) | 2,396,344  |
+| Salaries and Related Total |                    | 2,866,425  |
+| Stock-Based Compensation | Stock-Based Compensation Sales and Marketing (הוצ' תשלום מבוסס מניות מכירה ושייוק) | 47,610     |
+| Stock-Based Compensation Total |               | 47,610     |
+| Sales and Marketing Expenses Total |               | 3,865,177  |

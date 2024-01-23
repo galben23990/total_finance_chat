@@ -1,0 +1,141 @@
+{
+  "USD": {
+    "pie_dict": {
+      "Expesnse_Pie": {
+        "M_M": 62.0877694105427,
+        "Total": 12491000,
+        "Y_Y": 6.2325706940874,
+        "graph_data_percent_from_total": {
+          "Cost of Goods Sold": 9.39876711232087,
+          "General and Administrative Expenses": 21.7916900168121,
+          "R&D Expenses": 20.5908253942839,
+          "Sales and Marketing Expenses": 46.8177087503002,
+          "Tax Expenses": 1.40100872628292
+        }
+      },
+      "Revenue_Pie": {
+        "M_M": 11.1538461538462,
+        "Total": 16218930.205299,
+        "Y_Y": 97.8440076093849,
+        "graph_data_percent_from_total": {
+          "Userway INC": 52.5310024283622,
+          "Userway LTD": 41.1130926649735,
+          "WECO": 6.35590490666432
+        }
+      }
+    },
+    "report_year": "2023",
+    "table_dict": {
+      "Expesnse_Table": {
+        "Table_Data": [
+          {
+            "Description": "Sales and Marketing Expenses",
+            "PNL": 2396000,
+            "Percentage_of_Total": 24.68067573,
+            "account": "62100",
+            "account_description": "Wages"
+          },
+          {
+            "Description": "R&D Expenses",
+            "PNL": 1753000,
+            "Percentage_of_Total": 18.05727235,
+            "account": "63032",
+            "account_description": "R&D Expenses"
+          },
+          {
+            "Description": "General and Administrative Expenses",
+            "PNL": 721000,
+            "Percentage_of_Total": 7.426864442,
+            "account": "60000",
+            "account_description": "Wages"
+          },
+          {
+            "Description": "Cost of Goods Sold",
+            "PNL": 486000,
+            "Percentage_of_Total": 5.00618047,
+            "account": "50004",
+            "account_description": "Subcontractors"
+          },
+          {
+            "Description": "Sales and Marketing Expenses",
+            "PNL": 332000,
+            "Percentage_of_Total": 3.419859909,
+            "account": "60102",
+            "account_description": "Marketing"
+          },
+          {
+            "Description": "Sales and Marketing Expenses",
+            "PNL": 331000,
+            "Percentage_of_Total": 3.409559126,
+            "account": "62002",
+            "account_description": "Subcontractors"
+          },
+          {
+            "Description": "Cost of Goods Sold",
+            "PNL": 285000,
+            "Percentage_of_Total": 2.935723115,
+            "account": "50001",
+            "account_description": "Servers"
+          },
+          {
+            "Description": "General and Administrative Expenses",
+            "PNL": 282000,
+            "Percentage_of_Total": 2.904820766,
+            "account": "60104",
+            "account_description": "Consulting"
+          },
+          {
+            "Description": "General and Administrative Expenses",
+            "PNL": 250000,
+            "Percentage_of_Total": 2.575195715,
+            "account": "60116",
+            "account_description": "Professional Services"
+          },
+          {
+            "Description": "R&D Expenses",
+            "PNL": 161000,
+            "Percentage_of_Total": 1.65842604,
+            "account": "63100",
+            "account_description": "Wages"
+          }
+        ],
+        "Total": 12,491,000
+      },
+      "Revenue_Table": {
+        "Table_Data": [
+          {
+            "Description": "Userway LTD",
+            "PNL": 6668104,
+            "Percentage_of_Total": 41.11309266,
+            "account": "1",
+            "account_description": "Userway LTD"
+          },
+          {
+            "Description": "Userway INC",
+            "PNL": 8519967,
+            "Percentage_of_Total": 52.53100243,
+            "account": "2",
+            "account_description": "Userway INC"
+          },
+          {
+            "Description": "WECO",
+            "PNL": 1030860,
+            "Percentage_of_Total": 6.355904907,
+            "account": "3",
+            "account_description": "WECO"
+          }
+        ],
+        "Total": 16
+      }
+    },
+    "top_row": {
+      "expense_growth": 6.2325706940874,
+      "gross_margin": 87.9068809229502,
+      "net_margin": 28.5949732179646,
+      "opertaing_margin": -26.864441697569,
+      "rev_growth": 97.8440076093849,
+      "ytd_rev": 9708000,
+      "ytd_yy_growth": 97.8440076093849
+    }
+  }
+}
