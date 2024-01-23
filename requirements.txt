@@ -163,7 +163,7 @@ sortedcontainers==2.4.0
 soupsieve==2.5
 SQLAlchemy==1.4.49
 starkbank-ecdsa==2.2.0
-streamlit==1.28.0
+streamlit
 tenacity==8.2.3
 termcolor==2.3.0
 text-unidecode==1.3
