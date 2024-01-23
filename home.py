@@ -1,299 +1,289 @@
+
 import streamlit as st
-import pandas as pd
 import os
-import datetime
-import chardet
-from scripts import create_BS_table, create_PNL_table, get_data, create_pie_chart, process_spreadsheet,create_cash_flow_statement
-import matplotlib as mpl
-
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-
-def format_cash_flow(value):
-    # Check if the value is negative or positive to assign color
-    color = "red" if value < 0 else "green"
-    # Format the value as currency with NIS symbol and 2 decimal places
-    formatted_value = "NIS {:,.2f}".format(value)
-    return f"<span style='color: {color};'>{formatted_value}</span>"
-
-def format_delta(value):
-    if value == 0:
-        # Handling zero delta (can change the string to "No change" if preferred)
-        return 0
-    else:
-        # Format the value with two decimal places and prepend the currency symbol
-        return round(float(value), 2)
-# Define your report visualization function
-def visualize_report(report_df, report_type):
-    st.title(f"{report_type} September 2023")
-    # Add your visualization logic here
-    # For example, you might use st.line_chart, st.bar_chart, etc.
-    st.dataframe(report_df)  # Placeholder for actual visualization
+from config import *
+from utiltes import *
+from utils import *
+import os
+from config import *
+import openai
+import streamlit
+import streamlit as st
+from utils import *
+import os
+from config import *
+import time
+import pandas as pd
+import json
+import re
+from utiltes import *
+import time
+import datetime as dt
+from datetime import datetime, timedelta
+from serpapi import GoogleSearch
+from collections import defaultdict
+from PIL import Image
 
 
-# Modify your process_data function (if needed)
-# Modify your process_data function with mock logic for demonstration
-def process_data(report_type, account_coding_df, code_total_df):
-    # Implement processing logic
-    if report_type == "PNL":
-        processed_df = create_PNL_table(account_coding_df, code_total_df)
-    elif report_type == "BS":
-        processed_df = code_total_df.copy()  # Replace with actual logic
-    elif report_type == "CF":
-        processed_df = pd.concat([account_coding_df, code_total_df])  # Replace with actual logic
-    # Add your actual data processing logic here
-    return processed_df
-
-
-def filter_dataframe(df, key):
-    st.sidebar.header(f"Filter {key} options")
-    filtered_df = df
-    for col in df.columns:
-        # Check for NaN values and replace them with a string for filtering purposes
-        df[col] = df[col].fillna('None')
-        unique_values = df[col].unique().tolist()
-
-        # Convert all values to string for consistency in the multiselect widget
-        unique_values = [str(value) for value in unique_values]
-
-        # Selectbox/multiselect per column
-        selected = st.sidebar.selectbox(f"Filter by {col}:", ["All"] + unique_values, key=f"{key}_{col}")
-        if selected != "All":
-            # Filter the dataframe based on the selection
-            filtered_df = filtered_df[filtered_df[col].astype(str) == selected]
-
-    return filtered_df
-
-
-# Callback function to add an email to the list without refreshing
-def add_email():
-    if st.session_state.email_input and st.session_state.email_input not in st.session_state.email_list:
-        st.session_state.email_list.append(st.session_state.email_input)
-        st.session_state.email_input = ""  # Reset the input field
-
-
-# Callback function to process and share the report
-def share_report():
-    if 'email_list' in st.session_state and st.session_state.email_list:
-        # Here you would call your process_spreadsheet function
-        process_spreadsheet(st.session_state.pnl_report, st.session_state.email_list)
-        st.success("Report shared successfully!")
-        st.session_state.email_list = []  # Clear the list after sharing
-
-
-def remove_email(email_to_remove):
-    st.session_state.email_list.pop(index)
 
 
 st.set_page_config(layout="wide")
-# Define the custom CSS block
-css = """
-<style>
-    body {
-        color:#A7C7E7;
-    }
-    h1 {
-        color:#A7C7E7;
-    }
-    h2 {
-        color:#A7C7E7;
-    }
-    h3 {
-        color:#A7C7E7;
-    }
-    h4 {
-        color:#A7C7E7;
-    }
-    h5 {
-        color:#A7C7E7;
-    }
-    h6 {
-        color:#A7C7E7;
-    }
-     .stButton > button {
-    color:#A7C7E7 !important;
-    size: 20px;
-    bold: True;
-    }
-    .stExpander > button {
-    color:#A7C7E7 !important;
-    }
-    .st-expander-header .st-expander-button {
-        color:#A7C7E7 !important;
-    }
 
-    /* Style expander content border */
-    .st-expander-label {
-        border: 2px solid#A7C7E7 !important;
-    }
-</style>
-"""
+if "openai_model" not in st.session_state:
+    st.session_state["openai_model"] = "gpt-4-1106-preview"
 
-# Apply the custom CSS block using st.markdown
-st.markdown(css, unsafe_allow_html=True)
-if 'email_list' not in st.session_state:
-    st.session_state['email_list'] = []
-
-# Navigation
-if "navigation" not in st.session_state:
-    st.session_state["navigation"] = "home"
-
-# Home page layout
-if st.session_state["navigation"] == "home":
-    # titile wuth #F5E1FD
-    st.markdown("<h1 style='text-align: center; color:#A7C7E7;'>Total Finance Report Creator</h1>",
-                unsafe_allow_html=True)
-    # Initialize session state variables for dataframes
-    if 'account_coding_df' not in st.session_state:
-        st.session_state['account_coding_df'] = None
-    if 'code_total_df' not in st.session_state:
-        st.session_state['code_total_df'] = None
-
-    col1, col2, col3 = st.columns(3)  # Create two columns for upload buttons
-    with col1:
-        st.markdown("<h4 style='text-align: center; color:#A7C7E7;'>Upload Account Coding</h1>",
-                    unsafe_allow_html=True)
-        with st.expander(" ", expanded=True):
-            uploaded_account_coding = st.file_uploader(" ", type=['csv'], key="account_coding")
-            if uploaded_account_coding is not None:
-                st.session_state['account_coding_df'] = pd.read_csv(uploaded_account_coding)
-                st.success("Account Coding uploaded!")
-                # Filter the Account Coding dataframe with its own unique expander
-                #st.session_state['account_coding_df'] = filter_dataframe(st.session_state['account_coding_df'], 'account_coding')
-                st.dataframe(st.session_state['account_coding_df'])
-
-    with col2:
-        st.markdown("<h4 style='text-align: center; color:#A7C7E7;'>Upload Code Total</h1>", unsafe_allow_html=True)
-        with st.expander(" ", expanded=True):
-            uploaded_code_total = st.file_uploader(" ", type=['csv'], key="code_total")
-            if uploaded_code_total is not None:
-                st.session_state['code_total_df'] = pd.read_csv(uploaded_code_total)
-                st.success("Code Total uploaded!")
-                # Filter the Code Total dataframe with its own unique expander
-                #st.session_state['code_total_df'] = filter_dataframe(st.session_state['code_total_df'], 'code_total')
-                st.dataframe(st.session_state['code_total_df'])
-
-    with col3:
-        st.markdown("<h4 style='text-align: center; color:#A7C7E7;'>Upload Balance Sheet Files</h1>",
-                    unsafe_allow_html=True)
-        with st.expander(" ", expanded=True):
-            uploaded_balance_sheet = st.file_uploader(" ", type=['csv'], key="balance_sheet")
-            if uploaded_balance_sheet is not None:
-                st.session_state['balance_sheet_df'] = pd.read_csv(uploaded_balance_sheet)
-                st.success("Balance Sheet file uploaded!")
-
-                # Filter the Balance Sheet dataframe with its own unique expander
-                #st.session_state['balance_sheet_df'] = filter_dataframe(st.session_state['balance_sheet_df'],'Balance_Sheet')
-                st.dataframe(st.session_state['balance_sheet_df'])
-st.markdown('---')
-
-if st.button("Create Reports"):
-    col4, col5 = st.columns([2,1])
-    with col4:
-        if st.session_state['account_coding_df'] is not None and st.session_state['code_total_df'] is not None:
-            # Process the data to create the PNL report
-            pnl_report = create_PNL_table(st.session_state['account_coding_df'], st.session_state['code_total_df'])
-
-            # Visualize the report
-            visualize_report(pnl_report, "PNL")
-        with col5:
-            income_row = pnl_report[pnl_report['Category'] == 'INCOME']
-            if not income_row.empty:
-                st.empty()
-                st.empty()
-                st.empty()
-
-                # Drop non-numeric columns
-                income_data = income_row.drop(columns=['Code', 'Type', 'Category', 'Sub Category', 'Description'])
-
-                # Transpose the data to get months as the index and values as a single column
-                income_data = income_data.transpose()
-
-                # Reset the index of the DataFrame so that the months become a column
-                income_data.reset_index(inplace=True)
-
-                # Rename the columns for clarity
-                income_data.columns = ['Month', 'Value']
-                income_data['Month'] = pd.to_datetime(income_data['Month'], format='%B')
-                income_data.sort_values('Month', inplace=True)
-
-                # Create a line chart of the income data
-                st.markdown(
-                    "<h2 style='text-align: center; color:#A7C7E7;'>Monthly Revenue</h2><br><br>",
-                    unsafe_allow_html=True)
-
-                st.line_chart(income_data, x='Month', y='Value', color="#AEC6CF", )
-            else:
-                st.error("No row with 'INCOME' found in the 'Category' column.")
-
-    st.markdown('---')
-
-    col6, col7,col8 = st.columns([1.5,1,1])
-    with col6:
-        visualize_report(st.session_state['balance_sheet_df'], "BS")
-    with col7:
-        st.markdown("<h2 style='text-align: center; color:#A7C7E7;'>Current Assets Vs Current liabilaties",
-                    unsafe_allow_html=True)
-        asset_label = 'רכוש שוטף'
-        liability_label = 'התחייבויות שוטפות'
-        section_colors = ['#89c2d9', '#A7C7E7']
-        create_pie_chart(st.session_state['balance_sheet_df'], asset_label, liability_label, section_colors)
-    with col8:
-        st.markdown("<h2 style='text-align: center; color:#A7C7E7;'> Currest assets Vs Non current Assets",
-                    unsafe_allow_html=True)
-        asset_label = 'רכוש שוטף'
-        liability_label = 'רכוש קבוע'
-        section_colors = ['#A7C7E7', '#89c2d9']
-        create_pie_chart(st.session_state['balance_sheet_df'], asset_label, liability_label, section_colors)
-    st.markdown('---')
-
-    cf_report,operating_total, investing_total, financing_total = create_cash_flow_statement(st.session_state['account_coding_df'], st.session_state['code_total_df'])
-    col9, col10,col11 = st.columns([9,1.5,1])
+if "openai_model_onbot" not in st.session_state:
+    st.session_state["openai_model_onbot"] = "gpt-4-1106-preview"
     
-    with col9:
-        visualize_report(cf_report, "CF")
-    with col10:
-        st.markdown("""
-        <style>
-        .e1f1d6gn3 {
-            text-align: left !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
 
-        st.markdown("<h1 style='color: white;'>Summary</h1>", unsafe_allow_html=True)
-        st.markdown("<h1 style='color: white;'>Summary</h1>", unsafe_allow_html=True)
+if "chosen_keys_for_expanders" not in st.session_state:
+    st.session_state["chosen_keys_for_expanders"] = []
 
-        st.metric(label="Operating Cash Flow", value="", delta=format_delta(operating_total))
-        st.metric(label="Investing Cash Flow", value="", delta=format_delta(investing_total))
-        st.metric(label="Financing Cash Flow", value="", delta=format_delta(financing_total))
-    with col11:
-        st.empty()
-        
+def chat_process(prompt,massage_history="",write_contetn=False):
+    st.session_state.messages_QNA_bot.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.write(prompt)
+    with st.chat_message("assistant"):
+    
+        message_placeholder = st.empty()
+        full_response = ""
+        for response in openaiclient.chat.completions.create(
+            model=st.session_state["openai_model"],
+            stream=True,
+            messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages_QNA_bot],
+        ):
+            # Check for content and finish reason
+            if response.choices[0].delta.content is not None:
+                full_response += response.choices[0].delta.content
+                message_placeholder.write(full_response + "▌")
+            if response.choices[0].finish_reason is not None:
+                break
 
-            
-   
+        message_placeholder.write(full_response)
+    st.session_state.messages_QNA_bot.append({"role": "assistant", "content": full_response})
+    st.rerun()
+    with st.sidebar.expander("✔️ Complete ", expanded=False):
+        st.write("Process finished successfully! Here are some articles related to 'Can Humans Be AI Themselves?':")
+      
 
-    # Display the metrics with the formatted deltas
-   
-
-
-
-
-
-
+    if st.session_state["chosen_keys_for_expanders"]!=[]:
+      recrate_expander(st.session_state["chosen_keys_for_expanders"])
 
 
+    start_index = 5 
+    for index, message in enumerate(st.session_state.messages_QNA_bot):
+        if index < start_index:
+            continue
+        with st.chat_message(message["role"]):
+            st.write(message["content"])
 
 
-email = st.text_input("Enter email address", key="email_input")
+data_dict={
+    "Balance Sheets":"""The provided raw data represents a detailed balance sheet of a company named UserWay, encompassing various critical financial elements:
 
-if st.button("Share Report as Google Sheets"):
-    if email:  # Check if the email input is not empty
-        email_list = [email]  # Convert the email into a single-item list
-        st.write(email_list)
-        process_spreadsheet("Your_Report", email_list)
-        st.success("Report shared successfully!")
+1. **Asset Overview**: It splits assets into current and non-current categories, with specific values and monthly (M_M) and yearly (Y_Y) changes. The current assets are further detailed with components like prepaid expenses and trade receivables, while non-current assets include items such as electronic equipment and intangible assets.
+
+2. **Liabilities Breakdown**: The data shows current and non-current liabilities, again with specific values and change rates. It details various liabilities like credit cards, short-term loans, and supplier credits.
+
+3. **Financial Ratios and Totals**: Key financial ratios such as the current ratio and debt-to-equity ratio are provided, offering insights into the company's liquidity and financial leverage. The total values of assets and liabilities are also included.
+
+4. **Equity Information**: It provides the company's total equity value, along with its month-over-month and year-over-year changes.
+
+5. **Pie Charts Data**: The data includes pie chart breakdowns for current assets, current liabilities, non-current assets, and non-current liabilities, showing the proportion of each component.
+
+6. **Global Growth Rates**: The data outlines the global growth rates for assets and liabilities, both on a monthly and yearly basis.
+
+7. **Working Capital**: It calculates the working capital of the company and provides its monthly and yearly changes.
+
+This balance sheet data is crucial for understanding the company's financial health, analyzing its asset management, liability structure, and overall financial stability. This information is vital for investors, financial analysts, and the company's management for decision-making and strategic planning.""",
+    "Cash Flow":"""The provided raw data offers a comprehensive cash flow analysis for a company named UserWay. This analysis covers various aspects:
+
+1. **CapEx Information**: Highlights UserWay's capital expenditures, crucial for understanding its investments in long-term assets.
+
+2. **Current Ratio**: Provides a measure of UserWay's short-term liquidity, comparing current assets to current liabilities.
+
+3. **Cash Flow Details**: Showcases UserWay's cash flow at the start and end of the month, reflecting its cash management effectiveness.
+
+4. **Financial and Investing Activities**: Breaks down UserWay's financial and investing activities and expenses, offering insights into how the company allocates its financial resources.
+
+5. **Operating Expenses and Activities**: Details the company's operating expenses and activities, including changes in various operational financial items.
+
+6. **Net Burn Rate**: Presents UserWay's net burn rate, indicating the rate at which the company is utilizing its cash reserves.
+
+7. **Charts and Breakdowns**: Contains detailed charts and breakdowns of finance, investing, and operating activities, providing a granular view of UserWay's financial operations.
+
+This cash flow analysis is essential for stakeholders to assess UserWay's financial health, operational efficiency, investment strategies, and overall management of cash flows.""",
+    "PNL":"""Certainly! For the Profit and Loss (P&L) analysis of UserWay, the following comprehensive review can be offered:
+
+The provided data presents a detailed Profit and Loss analysis for UserWay, covering several key financial dimensions. This analysis includes:
+
+1. **Revenue Streams**: It breaks down various revenue sources, illustrating how much each segment contributes to the total revenue. This information is crucial for identifying which areas of UserWay's business are the most profitable.
+
+2. **Expense Allocation**: The data details the distribution of expenses across different categories such as sales and marketing, research and development (R&D), general and administrative, and cost of goods sold. This aspect is essential for understanding how resources are allocated and identifying the most significant areas of expenditure.
+
+3. **Operational Efficiency**: Key financial metrics included in the analysis are gross margin, net margin, operating margin, and year-to-date revenue growth. These metrics provide insights into UserWay's operational efficiency and profitability.
+
+4. **Financial Performance Over Time**: The analysis includes growth rates for both revenue and expenses, which are critical for assessing UserWay's financial performance over time. Additionally, year-over-year growth figures offer a comparative perspective of the company's financial evolution.
+
+5. **Comprehensive Overview**: This P&L analysis serves as a vital tool for stakeholders, including investors, managers, and analysts, to understand the financial health and performance of UserWay. It aids in identifying strengths, areas needing improvement, and overall financial strategy effectiveness.
+
+By examining these aspects, the P&L analysis provides a holistic view of UserWay's financial standing, allowing for informed decision-making and strategic planning.""",
+    "Goverment Payments":"""The provided data offers a financial comparison between current and previous periods for a company, with figures in both New Israeli Shekels (NIS) and United States Dollars (USD). The data covers three key financial areas:
+
+1. **VAT (Value Added Tax)**: Shows the VAT figures for both the current and previous periods. In NIS, there's an increase from a negative to a positive figure, indicating a shift from a VAT refundable position to a VAT payable one. In USD, a similar trend is observed, with the figures moving from negative to positive.
+
+2. **Social Security**: This item is marked as "On Client Reports" for both periods in both currencies, suggesting that the details for social security contributions are reported elsewhere or in a different format.
+
+3. **Payroll Taxes Accrual**: Represents the accrual of payroll taxes. In both NIS and USD, there's an increase in payroll taxes accrual from the last period to the current one, indicating a rise in payroll tax obligations.
+
+This data is crucial for understanding the company's tax liabilities and payroll tax commitments over the two periods, providing insights into its financial obligations and operational costs in these areas."""}
+
+Balance_Sheets_path="""company data\\Balance Sheets\\raw.json"""
+Cash_Flow_path="""company data\\Cash Flow\\raw.json"""
+PNL_path="""company data\\PNL\\raw.json"""
+Goverment_Payments_path="""company data\\Goverment Payments\\raw.json"""
+
+#extract the data 
+with open(Balance_Sheets_path, 'r') as file:
+    Balance_Sheets= file.read()
+with open(Cash_Flow_path, 'r') as file:
+    Cash_Flow = file.read()
+with open(PNL_path, 'r') as file:
+    PNL = file.read()
+with open(Goverment_Payments_path, 'r') as file:
+    Goverment_Payments = file.read()
+    
+
+q_and_a_massage_history=[{"role":"system","content":f"You are an ai Accoutent will get from the user a question and relvent data for the question you goal is the answer the question based on this data in a proffesinal manner in a nicely strectured way"},
+                         {"role":"user","content":f"**THIS IS THE BALANCE SHEETS DATA**: {Balance_Sheets}"},
+                         {"role":"user","content":f"**THIS IS THE Cash Flow DATA**: {Cash_Flow}"},
+                         {"role":"user","content":f"**THIS IS THE PNL DATA**: {PNL}"},
+                         {"role":"user","content":f"**THIS IS THE Goverment Payments DATA**: {Goverment_Payments}"},
+                         {"role":"assistant","content":"Welcome to your interactive online deck! Feel free to ask any questions about our company, including our roadmap, and financial projections."}]
+
+
+
+
+if "messages_QNA_bot" not in st.session_state:
+    st.session_state["messages_QNA_bot"]=q_and_a_massage_history
+
+def create_expnaders(prompt):
+    system_get_keys="You will get user question , and a data dict where the key is the excplict name of the datapoint and the value is the explination of the datapoint, you need to output in json format they keys that you think they data inside on the datapoint is relvent for answering the question , the json should have a key name 'answer' amd the value is a python list with explicit names of the keys of the datpoints you think are relvent for the answer Note you can use more than 1 datapoint for the answer"
+
+    get_keys_massage_history=[{"role":"system","content":system_get_keys},
+                            {"role":"user","content":f"***THIS IS THE USER QUESTION**: {prompt}"},
+                            {"role":"user","content":f"***THIS THE DATA DICT**: {data_dict}"}]
+
+    response=ask_gpt(get_keys_massage_history)
+    response=json.loads(response)
+    table_to_show=response["answer"]   
+    st.session_state["chosen_keys_for_expanders"] = table_to_show
+
+    if "expanders_state" not in st.session_state:
+        st.session_state["expanders_state"] = {} 
+    for key in table_to_show:
+        summury_path=f"company data\{key}\summury.txt"
+        with open(summury_path, 'r') as file:
+            summury_text = file.read()
+       
+        with st.expander(key, expanded=False):
+            #print text using markdwon
+            st.markdown(summury_text, unsafe_allow_html=True)
+
+
+        with st.expander(f"Data Tables {key}", expanded=False):
+            file_path=f"company data\{key}"
+            #get all .csv from dir create path list
+            files = [os.path.join(file_path, f) for f in os.listdir(file_path) if f.endswith('.json')]
+            #print all as dataframe use csv name as title
+            for file in files:
+                with st.container(border=True):
+                    #replace none with 0 and first name add Month 1....Month 18
+                    file_content=json.load(open(file))
+                    st.write(os.path.basename(file))
+                    
+                    st.json(file_content)
+                    
+
+                    
+
+
+def create_expnaders_key(prompt):
+    system_get_keys="""You will get user question , and a data dict where the key is the excplict name of the datapoint and the value is the explination of the datapoint, you need to output in json format they keys that you think they data inside on the datapoint is relvent for answering the question , the json should have a key name 'answer' amd the value is a python list with explicit names of the keys of the datpoints you think are relvent for the answer Note you can use more than 1 datapoint for the answer"""
+    get_keys_massage_history=[{"role":"system","content":system_get_keys},
+                            {"role":"user","content":f"***THIS IS THE USER QUESTION**: {prompt}"},
+                            {"role":"user","content":f"***THIS THE DATA DICT**: {data_dict}"}]
+
+    response=ask_gpt(get_keys_massage_history)
+    response=json.loads(response)
+    
+    table_to_show=response["answer"]   
+    st.session_state["chosen_keys_for_expanders"] = table_to_show
+                     
+                     
+def recrate_expander(keys):
+    for key in keys:
+        summury_path=f"company data\{key}\summury.txt"
+        with open(summury_path, 'r') as file:
+            summury_text = file.read()
+        if key not in st.session_state["expanders_state"]:
+            st.session_state["expanders_state"][key] = False
+
+        with st.expander(key, expanded=False):
+            #print text using markdwon
+            st.markdown(summury_text, unsafe_allow_html=True)
+            st.session_state["expanders_state"][key] = not st.session_state["expanders_state"][key]
+
+
+        with st.expander(f"Data Tables {key}", expanded=False):
+            file_path=f"company data\{key}"
+            #get all .csv from dir create path list
+            files = [os.path.join(file_path, f) for f in os.listdir(file_path) if f.endswith('.csv')]
+            #print all as dataframe use csv name as title
+            for file in files:
+                with st.container(border=True):
+                    #replace none with 0 and first name add Month 1....Month 18
+                    file_content=json.load(open(file))
+                    st.write(os.path.basename(file))
+                    
+                    st.json(file_content)
+
+
+    
+x="sk-9xPQ9C50b"
+y="c1sYkg2yikQT3Bl"
+z="bkFJ6jlVHQrpiJT3KZ9BmOMP"
+
+st.title("AcountBot🤖")
+
+openai.api_key = x+y+z
+openaiclient = openai.OpenAI(api_key=openai.api_key )
+
+    
+
+
+# Render the expanders first if the keys are set
+if st.session_state["chosen_keys_for_expanders"] != []: 
+    recrate_expander(st.session_state["chosen_keys_for_expanders"])
+
+# Placeholder for chat messages
+chat_QNAbot_placeholder = st.empty()
+
+# Render chat messages
+with chat_QNAbot_placeholder.container():
+    start_index = 5
+    for index, message in enumerate(st.session_state.messages_QNA_bot):
+        if index < start_index:
+            continue
+        with st.chat_message(message["role"]):
+            st.write(message["content"])
+
+# Handle user input
+if prompt := st.chat_input("Type Here"):
+    if st.session_state["chosen_keys_for_expanders"] != []: 
+        create_expnaders_key(prompt)
     else:
-        st.error("Please enter an email address.")
-
+        create_expnaders(prompt)
+    chat_process(prompt)
+                          
+  
