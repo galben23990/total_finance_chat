@@ -25,7 +25,7 @@ if "openai_model_onbot" not in st.session_state:
 if "chosen_keys_for_expanders" not in st.session_state:
     st.session_state["chosen_keys_for_expanders"] = []
 
- x="sk-9xPQ9C50b"
+x="sk-9xPQ9C50b"
 y="c1sYkg2yikQT3Bl"
 z="bkFJ6jlVHQrpiJT3KZ9BmOMP"
 openai.api_key = x+y+z
