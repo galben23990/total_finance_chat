@@ -13,7 +13,6 @@ from datetime import datetime, timedelta
 
 
 
-st.set_page_config(layout="wide")
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-4-1106-preview"
