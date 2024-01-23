@@ -257,7 +257,7 @@ z="bkFJ6jlVHQrpiJT3KZ9BmOMP"
 st.title("AcountBot🤖")
 
 openai.api_key = x+y+z
-openaiclient = openai.OpenAI(api_key=openai.api_key )
+#openaiclient = openai.OpenAI(api_key=openai.api_key )
 
     
 
