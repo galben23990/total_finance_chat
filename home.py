@@ -10,7 +10,6 @@ import time
 import datetime as dt
 from datetime import datetime, timedelta
 import streamlit as st
-from openai import OpenAI
 
 
 
