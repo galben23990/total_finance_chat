@@ -138,10 +138,10 @@ By examining these aspects, the P&L analysis provides a holistic view of UserWay
 
 This data is crucial for understanding the company's tax liabilities and payroll tax commitments over the two periods, providing insights into its financial obligations and operational costs in these areas."""}
 
-Balance_Sheets_path="""company data\\Balance Sheets\\raw.json"""
-Cash_Flow_path="""company data\\Cash Flow\\raw.json"""
-PNL_path="""company data\\PNL\\raw.json"""
-Goverment_Payments_path="""company data\\Goverment Payments\\raw.json"""
+Balance_Sheets_path="""company data//Balance Sheets//raw.json"""
+Cash_Flow_path="""company data//Cash Flow//raw.json"""
+PNL_path="""company data//PNL//raw.json"""
+Goverment_Payments_path="""company data//Goverment Payments//raw.json"""
 
 #extract the data 
 with open(Balance_Sheets_path, 'r') as file:
@@ -182,7 +182,7 @@ def create_expnaders(prompt):
     if "expanders_state" not in st.session_state:
         st.session_state["expanders_state"] = {} 
     for key in table_to_show:
-        summury_path=f"company data\{key}\summury.txt"
+        summury_path=f"company data/{key}/summury.txt"
         with open(summury_path, 'r') as file:
             summury_text = file.read()
        
@@ -192,7 +192,7 @@ def create_expnaders(prompt):
 
 
         with st.expander(f"Data Tables {key}", expanded=False):
-            file_path=f"company data\{key}"
+            file_path=f"company data/{key}"
             #get all .csv from dir create path list
             files = [os.path.join(file_path, f) for f in os.listdir(file_path) if f.endswith('.json')]
             #print all as dataframe use csv name as title
@@ -223,7 +223,7 @@ def create_expnaders_key(prompt):
                      
 def recrate_expander(keys):
     for key in keys:
-        summury_path=f"company data\{key}\summury.txt"
+        summury_path=f"company data/{key}/summury.txt"
         with open(summury_path, 'r') as file:
             summury_text = file.read()
         if key not in st.session_state["expanders_state"]:
@@ -236,7 +236,7 @@ def recrate_expander(keys):
 
 
         with st.expander(f"Data Tables {key}", expanded=False):
-            file_path=f"company data\{key}"
+            file_path=f"company data/{key}"
             #get all .csv from dir create path list
             files = [os.path.join(file_path, f) for f in os.listdir(file_path) if f.endswith('.csv')]
             #print all as dataframe use csv name as title
