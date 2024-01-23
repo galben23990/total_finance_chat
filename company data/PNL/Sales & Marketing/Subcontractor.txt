@@ -1,4 +1,0 @@
-"Sub-category","Description","Amount ($)"
-"Subcontractors","Subcontractors Marketing - Inactive","86,448"
-"Subcontractors","Subcontractors Sales and Marketing - Salaries","331,276"
-"Subcontractors Total","","417,724"
