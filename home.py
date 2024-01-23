@@ -235,18 +235,18 @@ def recrate_expander(keys):
                     st.json(file_content)
 
 
-    
-x="sk-9xPQ9C50b"
-y="c1sYkg2yikQT3Bl"
-z="bkFJ6jlVHQrpiJT3KZ9BmOMP"
+
 
 st.title("AcountBot🤖")
-
-openai.api_key = x+y+z
-
-openaiclient = openai.OpenAI(api_key=openai.api_key )
+    
 
 def ask_gpt(massage_history,model="gpt-4-1106-preview",max_tokens=2000,temperature=0,return_str=True,response_format={"type": "json_object"}):
+    x="sk-9xPQ9C50b"
+    y="c1sYkg2yikQT3Bl"
+    z="bkFJ6jlVHQrpiJT3KZ9BmOMP"
+    openai.api_key = x+y+z
+
+    openaiclient = openai.OpenAI(api_key=openai.api_key )
 
     response =  openaiclient.chat.completions.create(
       model=model,
