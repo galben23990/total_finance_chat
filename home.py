@@ -191,12 +191,10 @@ def create_expnaders(prompt):
             #print all as dataframe use csv name as title
             for file in files:
                 with st.container(border=True):
-                    #replace none with 0 and first name add Month 1....Month 18
-                    file_content=open(file)
+                    df = pd.read_csv(file)
                     st.write(os.path.basename(file))
-                    
-                    st.json(file_content)
-                    
+                    df=df.fillna(0)
+                    st.dataframe(df)
 
                     
 
@@ -235,12 +233,10 @@ def recrate_expander(keys):
             #print all as dataframe use csv name as title
             for file in files:
                 with st.container(border=True):
-                    #replace none with 0 and first name add Month 1....Month 18
-                    file_content=open(file)
+                    df = pd.read_csv(file)
                     st.write(os.path.basename(file))
-                    
-                    st.json(file_content)
-
+                    df=df.fillna(0)
+                    st.dataframe(df)
 
 
 
