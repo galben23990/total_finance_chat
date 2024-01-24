@@ -49,12 +49,9 @@
     },
     "net_burn": {
       "M_M": -3.301621668305365,
-      "Y_Y": -652.6339098758741,
       "current": -512318.488902718
     },
     "open_balance_cashflow": {
-      "M_M": 0.0,
-      "Y_Y": 0.0,
       "current": 4019000
     },
     "operating_chart": {
