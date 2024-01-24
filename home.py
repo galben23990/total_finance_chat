@@ -187,7 +187,7 @@ def create_expnaders(prompt):
         with st.expander(f"Data Tables {key}", expanded=False):
             file_path=f"company data/{key}"
             #get all .csv from dir create path list
-            files = [os.path.join(file_path, f) for f in os.listdir(file_path) if f.endswith('.json')]
+            files = [os.path.join(file_path, f) for f in os.listdir(file_path) if f.endswith('.csv')]
             #print all as dataframe use csv name as title
             for file in files:
                 with st.container(border=True):
