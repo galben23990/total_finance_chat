@@ -147,7 +147,7 @@ with open(Goverment_Payments_path, 'r') as file:
     Goverment_Payments = file.read()
     
 
-q_and_a_massage_history=[{"role":"system","content":f"You are an  Accoutent will get from the user a question and relvent data for the question you goal is the answer the question based on this data in a proffesinal manner in a nicely strectured way"},
+q_and_a_massage_history=[{"role":"system","content":f"You are an  Accoutent for a compay called DeepZero you will get from the user a question and relvent data for the question you goal is the answer the question based on this data in a proffesinal manner in a nicely strectured way"},
                          {"role":"user","content":f"**THIS IS THE BALANCE SHEETS DATA**: {Balance_Sheets}"},
                          {"role":"user","content":f"**THIS IS THE Cash Flow DATA**: {Cash_Flow}"},
                          {"role":"user","content":f"**THIS IS THE PNL DATA**: {PNL}"},
