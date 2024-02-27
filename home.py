@@ -152,7 +152,7 @@ q_and_a_massage_history=[{"role":"system","content":f"You are an  Accoutent for 
                          {"role":"user","content":f"**THIS IS THE Cash Flow DATA**: {Cash_Flow}"},
                          {"role":"user","content":f"**THIS IS THE PNL DATA**: {PNL}"},
                          {"role":"user","content":f"**THIS IS THE Goverment Payments DATA**: {Goverment_Payments}"},
-                         {"role":"assistant","content":"Welcome to your Personal AI Accoutent! Feel free to ask any questions about our UseWay Finnacials."}]
+                         {"role":"assistant","content":"Welcome to your Personal AI Accoutent! Feel free to ask any questions about our DeepZero Finnacials."}]
 
 
 
