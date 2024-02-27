@@ -240,7 +240,7 @@ def recrate_expander(keys):
 
 
 
-st.title("AcountBot🤖")
+st.title("AccountantBot🤖")
     
 x="sk-9xPQ9C50b"
 y="c1sYkg2yikQT3Bl"
