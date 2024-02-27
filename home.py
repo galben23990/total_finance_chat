@@ -72,7 +72,7 @@ def chat_process(prompt,massage_history="",write_contetn=False):
 
 
 data_dict={
-    "Balance Sheets":"""The provided raw data represents a detailed balance sheet of a company named UserWay, encompassing various critical financial elements:
+    "Balance Sheets":"""The provided raw data represents a detailed balance sheet of a company named TotalFinance, encompassing various critical financial elements:
 
 1. **Asset Overview**: It splits assets into current and non-current categories, with specific values and monthly (M_M) and yearly (Y_Y) changes. The current assets are further detailed with components like prepaid expenses and trade receivables, while non-current assets include items such as electronic equipment and intangible assets.
 
@@ -89,38 +89,38 @@ data_dict={
 7. **Working Capital**: It calculates the working capital of the company and provides its monthly and yearly changes.
 
 This balance sheet data is crucial for understanding the company's financial health, analyzing its asset management, liability structure, and overall financial stability. This information is vital for investors, financial analysts, and the company's management for decision-making and strategic planning.""",
-    "Cash Flow":"""The provided raw data offers a comprehensive cash flow analysis for a company named UserWay. This analysis covers various aspects:
+    "Cash Flow":"""The provided raw data offers a comprehensive cash flow analysis for a company named TotalFinance. This analysis covers various aspects:
 
-1. **CapEx Information**: Highlights UserWay's capital expenditures, crucial for understanding its investments in long-term assets.
+1. **CapEx Information**: Highlights TotalFinance's capital expenditures, crucial for understanding its investments in long-term assets.
 
-2. **Current Ratio**: Provides a measure of UserWay's short-term liquidity, comparing current assets to current liabilities.
+2. **Current Ratio**: Provides a measure of TotalFinance's short-term liquidity, comparing current assets to current liabilities.
 
-3. **Cash Flow Details**: Showcases UserWay's cash flow at the start and end of the month, reflecting its cash management effectiveness.
+3. **Cash Flow Details**: Showcases TotalFinance's cash flow at the start and end of the month, reflecting its cash management effectiveness.
 
-4. **Financial and Investing Activities**: Breaks down UserWay's financial and investing activities and expenses, offering insights into how the company allocates its financial resources.
+4. **Financial and Investing Activities**: Breaks down TotalFinance's financial and investing activities and expenses, offering insights into how the company allocates its financial resources.
 
 5. **Operating Expenses and Activities**: Details the company's operating expenses and activities, including changes in various operational financial items.
 
-6. **Net Burn Rate**: Presents UserWay's net burn rate, indicating the rate at which the company is utilizing its cash reserves.
+6. **Net Burn Rate**: Presents TotalFinance's net burn rate, indicating the rate at which the company is utilizing its cash reserves.
 
-7. **Charts and Breakdowns**: Contains detailed charts and breakdowns of finance, investing, and operating activities, providing a granular view of UserWay's financial operations.
+7. **Charts and Breakdowns**: Contains detailed charts and breakdowns of finance, investing, and operating activities, providing a granular view of TotalFinance's financial operations.
 
-This cash flow analysis is essential for stakeholders to assess UserWay's financial health, operational efficiency, investment strategies, and overall management of cash flows.""",
-    "PNL":"""Certainly! For the Profit and Loss (P&L) analysis of UserWay, the following comprehensive review can be offered:
+This cash flow analysis is essential for stakeholders to assess TotalFinance's financial health, operational efficiency, investment strategies, and overall management of cash flows.""",
+    "PNL":"""Certainly! For the Profit and Loss (P&L) analysis of TotalFinance, the following comprehensive review can be offered:
 
-The provided data presents a detailed Profit and Loss analysis for UserWay, covering several key financial dimensions. This analysis includes:
+The provided data presents a detailed Profit and Loss analysis for TotalFinance, covering several key financial dimensions. This analysis includes:
 
-1. **Revenue Streams**: It breaks down various revenue sources, illustrating how much each segment contributes to the total revenue. This information is crucial for identifying which areas of UserWay's business are the most profitable.
+1. **Revenue Streams**: It breaks down various revenue sources, illustrating how much each segment contributes to the total revenue. This information is crucial for identifying which areas of TotalFinance's business are the most profitable.
 
 2. **Expense Allocation**: The data details the distribution of expenses across different categories such as sales and marketing, research and development (R&D), general and administrative, and cost of goods sold. This aspect is essential for understanding how resources are allocated and identifying the most significant areas of expenditure.
 
-3. **Operational Efficiency**: Key financial metrics included in the analysis are gross margin, net margin, operating margin, and year-to-date revenue growth. These metrics provide insights into UserWay's operational efficiency and profitability.
+3. **Operational Efficiency**: Key financial metrics included in the analysis are gross margin, net margin, operating margin, and year-to-date revenue growth. These metrics provide insights into TotalFinance's operational efficiency and profitability.
 
-4. **Financial Performance Over Time**: The analysis includes growth rates for both revenue and expenses, which are critical for assessing UserWay's financial performance over time. Additionally, year-over-year growth figures offer a comparative perspective of the company's financial evolution.
+4. **Financial Performance Over Time**: The analysis includes growth rates for both revenue and expenses, which are critical for assessing TotalFinance's financial performance over time. Additionally, year-over-year growth figures offer a comparative perspective of the company's financial evolution.
 
-5. **Comprehensive Overview**: This P&L analysis serves as a vital tool for stakeholders, including investors, managers, and analysts, to understand the financial health and performance of UserWay. It aids in identifying strengths, areas needing improvement, and overall financial strategy effectiveness.
+5. **Comprehensive Overview**: This P&L analysis serves as a vital tool for stakeholders, including investors, managers, and analysts, to understand the financial health and performance of TotalFinance. It aids in identifying strengths, areas needing improvement, and overall financial strategy effectiveness.
 
-By examining these aspects, the P&L analysis provides a holistic view of UserWay's financial standing, allowing for informed decision-making and strategic planning.""",
+By examining these aspects, the P&L analysis provides a holistic view of TotalFinance's financial standing, allowing for informed decision-making and strategic planning.""",
     "Goverment Payments":"""The provided data offers a financial comparison between current and previous periods for a company, with figures in both New Israeli Shekels (NIS) and United States Dollars (USD). The data covers three key financial areas:
 
 1. **VAT (Value Added Tax)**: Shows the VAT figures for both the current and previous periods. In NIS, there's an increase from a negative to a positive figure, indicating a shift from a VAT refundable position to a VAT payable one. In USD, a similar trend is observed, with the figures moving from negative to positive.
